@@ -1,0 +1,4 @@
+package open
+
+func open() {
+}
