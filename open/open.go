@@ -1,4 +1,0 @@
-package open
-
-func open() {
-}
