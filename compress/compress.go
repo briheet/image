@@ -1,39 +1,40 @@
 package compress
 
 import (
-	"io"
+	"image"
+	"image/png"
 	"os"
+
+	pngquant "github.com/yusukebe/go-pngquant"
 )
 
-func CompressTofile(got string, name string) (os.File, error) {
+func CompressToFile(got string, name string) (*os.File, error) {
 	given, err := os.Open(got)
 	if err != nil {
-		return os.File{}, err
+		return nil, err
 	}
 	defer given.Close()
 
+	img, _, err := image.Decode(given)
+	if err != nil {
+		return nil, err
+	}
+
+	compressedImg, err := pngquant.Compress(img, "1")
+	if err != nil {
+		return nil, err
+	}
+
 	compressedFile, err := os.Create(name)
 	if err != nil {
-		return os.File{}, nil
+		return nil, err
 	}
 	defer compressedFile.Close()
 
-	buf := make([]byte, 1024)
-
-	for {
-		n, err := given.Read(buf)
-		if err != nil && err != io.EOF {
-			return os.File{}, nil
-		}
-		if n == 0 {
-			break
-		}
-
-		_, err = compressedFile.Write(buf)
-		if err != nil {
-			return os.File{}, nil
-		}
+	err = png.Encode(compressedFile, compressedImg)
+	if err != nil {
+		return nil, err
 	}
 
-	return *compressedFile, nil
+	return compressedFile, nil
 }

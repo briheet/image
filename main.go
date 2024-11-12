@@ -10,11 +10,13 @@ import (
 func main() {
 	fmt.Println("starting...")
 
-	compressedFile, err := compress.CompressTofile("Firefox_wallpaper.png", "compress.png")
+	compressedFile, err := compress.CompressToFile("Firefox_wallpaper.png", "compress.png")
 	if err != nil {
 		panic(err)
 	}
 	defer compressedFile.Close()
+
+	fmt.Println("...ending")
 
 	os.Exit(0)
 }
