@@ -1,7 +1,7 @@
 # Image
 
-This package provides Go methods to handle image file operations, specifically for compressing PNG images.
-Currently only works with .png files.
+This package provides Go methods to handle image file operations, specifically for compressing images.
+Currently only works with .png | .jpg files.
 
 ### Prerequisites
 
@@ -26,7 +26,7 @@ Run the executable with the following commands and arguments:
 
   ```bash
   make
-  ./bin/Image -compress <SourceFile.png> <OutputFile.png>
+  ./bin/Image -compress <SourceFile> <OutputFile>
   ```
 
 - **GreyScale**  
