@@ -17,12 +17,22 @@ Run the executable with the following commands and arguments:
   Display help information and usage examples.
 
   ```bash
-  ./binary -h
+  make
+  ./bin/Image -h
   ```
 
 - **Compress**  
   Compress a PNG file to reduce its size while retaining quality.
 
   ```bash
-  ./binary -compress <SourceFile.png> <OutputFile.png>
+  make
+  ./bin/Image -compress <SourceFile.png> <OutputFile.png>
+  ```
+
+- **GreyScale**  
+  Convert an Given image file to GreyScale. It uses Average method to convert to greyscale by changing the pixel values.
+
+  ```bash
+  make
+  ./bin/Image -greyscale <SourceFile> <OutputFile>
   ```
